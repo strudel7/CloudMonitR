@@ -1,13 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{59BFFC9C-211C-48C7-A222-45B95051E1D5}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudMonitR.Azure", "CloudMonitR.Azure\CloudMonitR.Azure.ccproj", "{F3CFF799-9C3B-4154-AAA7-DEFE110EC4FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudMonitR.WorkerRole", "CloudMonitR.WorkerRole\CloudMonitR.WorkerRole.csproj", "{77D6E7A9-672A-4D87-B457-3DB30AE88B69}"
@@ -41,7 +34,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
 EndGlobal
