@@ -1,0 +1,32 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+#pageComponents {
+    margin: 60px 0 0 0;
+}
+
+#traceMessages {
+    margin: 0;
+    padding: 5px;
+    min-height: 500px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-color: #000;
+    border-width: 1px;
+    border-style: solid;
+}
+
+    #traceMessages li {
+        list-style-type: none;
+        margin: 0;
+    }
+
+.chartContainer {
+    margin: 0 0 10px 0;
+}
+
+.chartControls {
+    margin: 0 0 10px 0;
+    text-align: center;
+}
