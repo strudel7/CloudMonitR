@@ -67,7 +67,6 @@
     <Compile Include="Storage\PerformanceCounterItem.cs" />
     <Compile Include="Storage\StorageWrapper.cs" />
     <Compile Include="CloudMonitREngine.cs" />
-    <Compile Include="Utility\TaskHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
