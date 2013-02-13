@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     // some view models
     counterViewModel = function (nm, cntInst) {
-        self = this;
+        var self = this;
         self.counterInstance = cntInst;
         self.id = cleanString(nm + cntInst);
         self.name = nm;
@@ -13,12 +13,12 @@ $(document).ready(function () {
     };
 
     pageViewModel = function () {
-        self = this;
+        var self = this;
         self.counters = [];
     };
 
     counterCategoryMenuItem = function (n, i) {
-        self = this;
+        var self = this;
         self.category = n;
         self.instances = i;
     };
