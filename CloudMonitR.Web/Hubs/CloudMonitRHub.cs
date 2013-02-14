@@ -1,4 +1,5 @@
-﻿using SignalR.Hubs;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,15 @@ namespace CloudMonitR.Web.Hubs {
 
         public void ConnectWorker() {
             base.Groups.Add(Context.ConnectionId, WORKER);
-            Clients[DASHBOARD].onWorkerReady();
+            Clients.Group(DASHBOARD).onWorkerReady();
         }
 
         public void SendDataToChart(dynamic data) {
-            Clients[DASHBOARD].onChartDataReceived(data);
+            Clients.Group(DASHBOARD).onChartDataReceived(data);
         }
 
         public void SendTraceMessageToGui(dynamic message) {
-            Clients[DASHBOARD].onTraceMessageReceived(new {
+            Clients.Group(DASHBOARD).onTraceMessageReceived(new {
                 body = string.Format("{0} {1} {2}",
                             DateTime.Now.ToShortDateString(),
                             DateTime.Now.ToLongTimeString(),
@@ -33,27 +34,27 @@ namespace CloudMonitR.Web.Hubs {
         }
 
         public void GetPerformanceCounterCategories() {
-            Clients[WORKER].onGetPerformanceCounterCategories();
+            Clients.Group(WORKER).onGetPerformanceCounterCategories();
         }
 
         public void SendPerformanceCounterCategoriesToDashboard(List<dynamic> categories) {
-            Clients[DASHBOARD].onSendPerformanceCounterCategoriesToDashboard(categories);
+            Clients.Group(DASHBOARD).onSendPerformanceCounterCategoriesToDashboard(categories);
         }
 
         public void GetPerformanceCounters(string category, string instance) {
-            Clients[WORKER].onGetPerformanceCounters(category, instance);
+            Clients.Group(WORKER).onGetPerformanceCounters(category, instance);
         }
 
         public void SendPerformanceCountersToDashboard(List<string> counters) {
-            Clients[DASHBOARD].onSendPerformanceCountersToDashboard(counters);
+            Clients.Group(DASHBOARD).onSendPerformanceCountersToDashboard(counters);
         }
 
         public void AddCounterToDashboard(string category, string instance, string counter) {
-            Clients[WORKER].onAddCounterToDashboard(category, instance, counter);
+            Clients.Group(WORKER).onAddCounterToDashboard(category, instance, counter);
         }
 
         public void DeleteCounter(string counter, string instance) {
-            Clients[WORKER].onDeleteCounter(counter, instance);
+            Clients.Group(WORKER).onDeleteCounter(counter, instance);
         }
     }
 }

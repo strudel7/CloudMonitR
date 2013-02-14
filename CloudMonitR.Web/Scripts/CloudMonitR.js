@@ -1,5 +1,5 @@
-﻿/// <reference path="jquery-1.8.1.js" />
-/// <reference path="jquery.signalR-0.5.3.js" />
+﻿/// <reference path="jquery-1.9.1.js" />
+/// <reference path="jquery.signalR-1.0.0-rc2.js" />
 /// <reference path="highcharts.js" />
 $(document).ready(function () {
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     // set up some variables
     var cn = $.hubConnection();
-    var hub = cn.createProxy("cloudMonitR");
+    var hub = cn.createHubProxy("cloudMonitR");
     var viewModel = new pageViewModel();
     var charts = [];
     var counterCategoryMenuItems = [];
@@ -41,6 +41,33 @@ $(document).ready(function () {
     // signalr handlers
     hub.on('onChartDataReceived', function (v) {
         drawPoint(v.name, v.value, v.instanceId, v.counterInstance);
+
+        $('.deleteCounter').on('click', function (i) {
+            hub.invoke('deleteCounter', $(this).data('counter'), $(this).data('instance'));
+
+            var cntr = $(this).data('counter');
+            var inst = $(this).data('instance');
+            var id = cleanString(cntr + inst);
+
+            $('#' + id).fadeOut('fast', function () {
+                $('#' + id).remove();
+                $('#control_' + id).remove();
+
+                for (var x = viewModel.counters.length - 1; x >= 0; x--) {
+                    if (viewModel.counters[x].id == id) {
+                        viewModel.counters.splice(x, 1);
+
+                        for (var c = charts.length - 1; c >= 0; c--) {
+                            var ttl = cntr + ' - ' + inst;
+                            if (charts[c].title.text == ttl) {
+                                charts.splice(c, 1);
+                            }
+                        }
+                        break;
+                    }
+                }
+            });
+        });
     });
 
     hub.on('onTraceMessageReceived', function (msg) {
@@ -95,33 +122,6 @@ $(document).ready(function () {
 
     $('#counterInstances').change(function () {
         loadCounterMenu();
-    });
-
-    $('.deleteCounter').live('click', function (i) {
-        hub.invoke('deleteCounter', $(this).data('counter'), $(this).data('instance'));
-
-        var cntr = $(this).data('counter');
-        var inst = $(this).data('instance');
-        var id = cleanString(cntr + inst);
-
-        $('#' + id).fadeOut('fast', function () {
-            $('#' + id).remove();
-            $('#control_' + id).remove();
-
-            for (var x = viewModel.counters.length - 1; x >= 0; x--) {
-                if (viewModel.counters[x].id == id) {
-                    viewModel.counters.splice(x, 1);
-
-                    for (var c = charts.length - 1; c >= 0; c--) {
-                        var ttl = cntr + ' - ' + inst;
-                        if (charts[c].title.text == ttl) {
-                            charts.splice(c, 1);
-                        }
-                    }
-                    break;
-                }
-            }
-        });
     });
 
     // misc functions

@@ -1,6 +1,8 @@
 ﻿using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
 using System;
 using System.Collections.Generic;
 using System.Data.Services.Client;
@@ -19,11 +21,10 @@ namespace CloudMonitR {
             _storageAccount = CloudStorageAccount.Parse(
                 RoleEnvironment.GetConfigurationSettingValue(_connectionStringName)
                 );
-            _tableClient = new CloudTableClient(_storageAccount.TableEndpoint.AbsoluteUri,
-                _storageAccount.Credentials);
-            _tableClient.RetryPolicy = RetryPolicies.Retry(3, TimeSpan.FromSeconds(1));
-            _tableClient.CreateTableIfNotExist(_tableName);
-            _tableContext = _tableClient.GetDataServiceContext();
+            _tableClient = _storageAccount.CreateCloudTableClient();
+            _tableClient.GetTableReference(_tableName);
+            _tableClient.GetTableReference(_tableName).CreateIfNotExists();
+            _tableContext = _tableClient.GetTableServiceContext();
         }
 
         public void Add(PerformanceCounterItem item) {

@@ -1,13 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C9BCED39-2F5C-4E8B-8822-599DEDA5FED7}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudMonitR.Azure", "CloudMonitR.Azure\CloudMonitR.Azure.ccproj", "{F3CFF799-9C3B-4154-AAA7-DEFE110EC4FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudMonitR.WorkerRole", "CloudMonitR.WorkerRole\CloudMonitR.WorkerRole.csproj", "{77D6E7A9-672A-4D87-B457-3DB30AE88B69}"
@@ -15,6 +8,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudMonitR.Web", "CloudMonitR.Web\CloudMonitR.Web.csproj", "{C98195B8-CE50-47CC-9BCA-8CF5AAD5CD23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudMonitR", "CloudMonitR\CloudMonitR.csproj", "{A3EF6EB9-A4DA-483E-99CB-053E66F7B07E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C9BCED39-2F5C-4E8B-8822-599DEDA5FED7}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
